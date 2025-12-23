@@ -1,0 +1,38 @@
+<mujoco model="Actuation Test">
+    <compiler angle="radian"/>
+
+    <option timestep="0.002" integrator="RK4">
+        <flag actuation="enable"/>
+    </option>
+
+    <visual>
+        <headlight ambient=".4 .4 .4" diffuse=".8 .8 .8" specular="0.1 0.1 0.1"/>
+    </visual>
+
+    <worldbody>
+        <light pos="0 0 1.5" dir="0 0 -1"/>
+        <geom type="plane" size="2 2 0.1" rgba=".9 .9 .9 1"/>
+        <body name="cart" pos="0 0 0.1">
+            <joint name="slider" type="slide" pos="0 0 0" axis="1 0 0"/>
+            <geom type="box" size=".2 .15 .05" rgba="0.8 0.2 0.2 1"/>
+            <body name="pole" pos="0 0 0">
+                <joint name="hinger" type="hinge" pos="0 0 0" axis="0 1 0"/>
+                <geom type="capsule" fromto="0 0 0 0 0 0.5" size="0.04" rgba="0.2 0.8 0.2 1"/>
+            </body>
+        </body>
+    </worldbody>
+
+    <actuator>
+        <general name="cart_motor" joint="slider"
+               gaintype="fixed" gainprm="100"
+               ctrllimited="true" ctrlrange="-1.0 1.0"
+               forcelimited="true" forcerange="-200 200"/>
+
+        <general name="pole_actuator" joint="hinger"
+               dyntype="filter" dynprm="0.1"
+               gaintype="fixed" gainprm="50"
+               biastype="affine" biasprm="0 -20 -2"
+               ctrllimited="true" ctrlrange="-1.0 1.0"/>
+    </actuator>
+
+</mujoco>

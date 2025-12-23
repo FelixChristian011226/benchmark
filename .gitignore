@@ -1,0 +1,4 @@
+# Benchmark methods
+mujoco/
+mujoco_warp/
+cuda_mujoco/
