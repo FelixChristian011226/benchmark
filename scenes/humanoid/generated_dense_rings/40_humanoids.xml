@@ -1,0 +1,35 @@
+<mujoco model="40 Humanoids DenseRings">
+  <option timestep="0.005" solver="CG" integrator="implicitfast" jacobian="dense"/>
+
+  <size memory="300M"/>
+
+  <asset>
+    <texture type="skybox" builtin="gradient"
+             rgb1=".3 .5 .7" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+    <model name="humanoid" file="humanoid.xml"/>
+  </asset>
+
+  <visual>
+    <map force="0.1" zfar="30"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <quality numslices="16" numstacks="8"/>
+    <global offwidth="800" offheight="800"/>
+  </visual>
+
+  <worldbody>
+    <geom name="floor" size="20 20 .05" type="plane" material="grid" contype="1" conaffinity="1"/>
+
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5" dir="0 0 -1" castshadow="false"/>
+    <light name="spotlight" mode="targetbodycom" target="world" diffuse="1 1 1" specular="0.3 0.3 0.3" pos="-6 -6 4" cutoff="60"/>
+
+    <!-- ring 0, count=40, R=2.000 -->
+    <replicate count="40" euler="0 0 9.0" sep="-">
+      <frame pos="0 -2.000000 0">
+        <attach model="humanoid" body="torso" prefix="_r0_"/>
+      </frame>
+    </replicate>
+
+  </worldbody>
+</mujoco>

@@ -1,0 +1,22 @@
+<mujoco model="22 Humanoids MultiRing">
+  <option timestep="0.002" solver="CG" integrator="implicitfast" jacobian="dense"/>
+
+  <asset>
+    <model name="humanoid" file="humanoid.xml"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="150.0 150.0 .05" type="plane" material="grid" contype="1" conaffinity="1"/>
+
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5" dir="0 0 -1" castshadow="false"/>
+    <light name="spotlight" mode="targetbodycom" target="world" diffuse="1 1 1" specular="0.3 0.3 0.3" pos="-6 -6 4" cutoff="60"/>
+    <!-- ring 0, count=22, R=4.000 -->
+    <replicate count="22" euler="0 0 16.363636363636363" sep="-">
+      <frame pos="0 -4.000000 0">
+        <attach model="humanoid" body="torso" prefix="_r0_"/>
+      </frame>
+    </replicate>
+  </worldbody>
+</mujoco>

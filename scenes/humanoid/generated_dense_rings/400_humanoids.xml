@@ -1,0 +1,63 @@
+<mujoco model="400 Humanoids DenseRings">
+  <option timestep="0.005" solver="CG" integrator="implicitfast" jacobian="dense"/>
+
+  <size memory="300M"/>
+
+  <asset>
+    <texture type="skybox" builtin="gradient"
+             rgb1=".3 .5 .7" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+    <model name="humanoid" file="humanoid.xml"/>
+  </asset>
+
+  <visual>
+    <map force="0.1" zfar="30"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <quality numslices="16" numstacks="8"/>
+    <global offwidth="800" offheight="800"/>
+  </visual>
+
+  <worldbody>
+    <geom name="floor" size="20 20 .05" type="plane" material="grid" contype="1" conaffinity="1"/>
+
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5" dir="0 0 -1" castshadow="false"/>
+    <light name="spotlight" mode="targetbodycom" target="world" diffuse="1 1 1" specular="0.3 0.3 0.3" pos="-6 -6 4" cutoff="60"/>
+
+    <!-- ring 0, count=50, R=2.000 -->
+    <replicate count="50" euler="0 0 7.2" sep="-">
+      <frame pos="0 -2.000000 0">
+        <attach model="humanoid" body="torso" prefix="_r0_"/>
+      </frame>
+    </replicate>
+
+    <!-- ring 1, count=67, R=2.700 -->
+    <replicate count="67" euler="0 0 5.373134328358209" sep="-">
+      <frame pos="0 -2.700000 0">
+        <attach model="humanoid" body="torso" prefix="_r1_"/>
+      </frame>
+    </replicate>
+
+    <!-- ring 2, count=85, R=3.400 -->
+    <replicate count="85" euler="0 0 4.235294117647059" sep="-">
+      <frame pos="0 -3.400000 0">
+        <attach model="humanoid" body="torso" prefix="_r2_"/>
+      </frame>
+    </replicate>
+
+    <!-- ring 3, count=103, R=4.100 -->
+    <replicate count="103" euler="0 0 3.495145631067961" sep="-">
+      <frame pos="0 -4.100000 0">
+        <attach model="humanoid" body="torso" prefix="_r3_"/>
+      </frame>
+    </replicate>
+
+    <!-- ring 4, count=95, R=4.800 -->
+    <replicate count="95" euler="0 0 3.789473684210526" sep="-">
+      <frame pos="0 -4.800000 0">
+        <attach model="humanoid" body="torso" prefix="_r4_"/>
+      </frame>
+    </replicate>
+
+  </worldbody>
+</mujoco>
