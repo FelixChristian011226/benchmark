@@ -3,41 +3,43 @@ import re
 import pandas as pd
 import os
 import time
+from scene_converter import prepare_scenes_for_all_engines, DEFAULT_ENGINE_OPTIONS
 
 # ================= 配置区域 =================
 
 CONFIG = {
     "global_steps": 1000,  # 全局测试步数
     
+    # [新增] 统一的源场景目录（所有引擎共用）
+    "source_scene_dir": "scenes/humanoid/generated_dense_rings/",
+    
+    # [新增] 临时目录，存放各引擎的场景副本
+    "temp_dir": "temp",
+    
     # [移除] 这里的 scenes 列表不再需要，脚本会自动去下面的文件夹里找
     # "scenes": [...], 
 
     # 引擎配置
-    # 脚本会自动扫描 {cwd}/{scene_prefix} 目录下的所有 .xml 文件
+    # scene_prefix 将由脚本自动设置为 temp/{engine_name}/
     "engines": {
         "mujoco": {
             "enabled": True,
-            # base_dir: 场景文件相对于执行目录的前缀路径
-            "scene_prefix": "scenes/humanoid/sparse/", 
             "cmd_template": "mujoco/build/bin/testspeed {full_path} {steps}",
             "shell": False
         },
         "mjx": {
-            "enabled": True,
-            "scene_prefix": "scenes/humanoid/warp/",
+            "enabled": False,
             "cmd_template": "mjx-testspeed --mjcf {full_path} --base_path . --batch_size 1 --nstep {steps}",
             "shell": False
         },
         "mujoco_warp": {
             "enabled": True,
-            "scene_prefix": "../scenes/humanoid/warp/",
             "cmd_template": "source env/bin/activate && mjwarp-testspeed {full_path} --event_trace=True --nworld=1",
-            "cwd": "mujoco_warp", # 切换工作目录
+            "cwd": "mujoco_warp",  # 切换工作目录
             "shell": True 
         },
         "cuda_mujoco": {
             "enabled": True,
-            "scene_prefix": "scenes/humanoid/dense/",
             "cmd_template": "cuda_mujoco/build/bin/testspeed_cuda {full_path} {steps}",
             "shell": False
         }
@@ -106,24 +108,54 @@ def run_benchmarks():
     
     print(f"🚀 开始执行测试...")
     
-    # 1. 外层循环改为遍历引擎
+    # 0. 获取启用的引擎列表
+    enabled_engines = [
+        name for name, cfg in CONFIG['engines'].items() 
+        if cfg.get("enabled", True)
+    ]
+    
+    if not enabled_engines:
+        print("⚠️ 没有启用任何引擎")
+        return summary_results, detailed_logs
+    
+    # 1. 准备场景文件（复制并修改）
+    engine_scene_dirs = prepare_scenes_for_all_engines(
+        source_dir=CONFIG['source_scene_dir'],
+        temp_dir=CONFIG['temp_dir'],
+        enabled_engines=enabled_engines
+    )
+    
+    # 2. 遍历引擎进行测试
     for engine_name, engine_cfg in CONFIG['engines'].items():
         if not engine_cfg.get("enabled", True):
             continue
         
         print(f"\n[Engine] {engine_name}")
 
-        # 2. 确定要扫描的物理路径
+        # 3. 确定场景目录（从临时目录获取）
         base_cwd = engine_cfg.get("cwd", ".") 
-        scene_prefix = engine_cfg.get("scene_prefix", "")
-        scan_dir = os.path.join(base_cwd, scene_prefix)
+        
+        # 获取该引擎的临时场景目录
+        if engine_name not in engine_scene_dirs:
+            print(f"  ❌ Error: 引擎 {engine_name} 的场景目录未准备，跳过")
+            continue
+        
+        temp_scene_dir = engine_scene_dirs[engine_name]
+        
+        # 对于有 cwd 的引擎，scene_prefix 需要是相对于 cwd 的路径
+        if base_cwd != ".":
+            scene_prefix = os.path.relpath(temp_scene_dir, base_cwd)
+        else:
+            scene_prefix = temp_scene_dir
+        
+        scan_dir = temp_scene_dir
         
         # 检查目录是否存在
         if not os.path.exists(scan_dir):
             print(f"  ❌ Error: 目录不存在，跳过: {scan_dir}")
             continue
             
-        # 3. 扫描该目录下的所有 XML 文件
+        # 4. 扫描该目录下的所有 XML 文件
         try:
             files = [f for f in os.listdir(scan_dir) if f.endswith('.xml')]
             
@@ -152,7 +184,7 @@ def run_benchmarks():
             # traceback.print_exc()
             continue
 
-        # 4. 遍历找到的文件进行测试
+        # 5. 遍历找到的文件进行测试
         for filename in files:
             scene_name_no_ext = os.path.splitext(filename)[0]
             print(f"    -> Testing Scene: {scene_name_no_ext}")
