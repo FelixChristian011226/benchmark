@@ -9,6 +9,7 @@ from scene_converter import prepare_scenes_for_all_engines, DEFAULT_ENGINE_OPTIO
 
 CONFIG = {
     "global_steps": 1000,  # 全局测试步数
+    "ctrlnoise": 0.4,      # 控制噪声幅度 (0.0-1.0)，用于增加场景复杂度
     
     # [新增] 统一的源场景目录（所有引擎共用）
     "source_scene_dir": "scenes/humanoid/generated_dense_rings/",
@@ -21,10 +22,16 @@ CONFIG = {
 
     # 引擎配置
     # scene_prefix 将由脚本自动设置为 temp/{engine_name}/
+    # ctrlnoise 支持情况：
+    #   - mujoco: ✅ 支持 (命令行参数)
+    #   - cuda_mujoco: ✅ 支持 (命令行参数)
+    #   - mjx: ❌ 不支持 
+    #   - mujoco_warp: ❌ 不支持 
     "engines": {
         "mujoco": {
             "enabled": True,
-            "cmd_template": "mujoco/build/bin/testspeed {full_path} {steps}",
+            # testspeed 参数顺序: modelfile [nstep nthread ctrlnoise]
+            "cmd_template": "mujoco/build/bin/testspeed {full_path} {steps} 1 {ctrlnoise}",
             "shell": False
         },
         "mjx": {
@@ -34,13 +41,13 @@ CONFIG = {
         },
         "mujoco_warp": {
             "enabled": True,
-            "cmd_template": "source env/bin/activate && mjwarp-testspeed {full_path} --event_trace=True --nworld=1",
+            "cmd_template": "source env/bin/activate && mjwarp-testspeed {full_path} --event_trace=True --nworld=1 --nstep={steps}",
             "cwd": "mujoco_warp",  # 切换工作目录
             "shell": True 
         },
         "cuda_mujoco": {
             "enabled": True,
-            "cmd_template": "cuda_mujoco/build/bin/testspeed_cuda {full_path} {steps}",
+            "cmd_template": "cuda_mujoco/build/bin/testspeed_cuda {full_path} {steps} 1 {ctrlnoise}",
             "shell": False
         }
     }
@@ -196,7 +203,8 @@ def run_benchmarks():
             cmd = engine_cfg["cmd_template"].format(
                 full_path=full_path_for_cmd, 
                 steps=CONFIG["global_steps"],
-                xml_path=full_path_for_cmd
+                xml_path=full_path_for_cmd,
+                ctrlnoise=CONFIG.get("ctrlnoise", 0.01)
             )
             
             try:
