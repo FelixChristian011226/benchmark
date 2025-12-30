@@ -1,0 +1,97 @@
+<mujoco model="4 UR5E Robots Complex Scene">
+  
+  <option timestep="0.005" solver="CG" integrator="implicit"/>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1=".3 .5 .7" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="floor" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <texture name="box_tex" type="2d" builtin="flat" width="64" height="64" rgb1=".8 .4 .1"/>
+    <texture name="table_tex" type="2d" builtin="flat" width="128" height="128" rgb1=".3 .25 .2"/>
+    <material name="floor" texture="floor" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+    <material name="box_mat" texture="box_tex" specular="0.3" shininess="0.1"/>
+    <material name="sphere_mat" rgba=".2 .6 .8 1" specular="0.5" shininess="0.3"/>
+    <material name="table_mat" texture="table_tex" specular="0.2" shininess="0.05"/>
+    <model name="ur5e" file="ur5e.xml"/>
+  </asset>
+
+  <visual>
+    <map force="0.1" zfar="100"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <quality shadowsize="4096"/>
+    <global offwidth="1920" offheight="1080"/>
+  </visual>
+
+  <worldbody>
+    <geom name="floor" size="2.5 2.5 .05" type="plane" material="floor" condim="3"/>
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5" dir="0 0 -1" castshadow="false"/>
+    <light name="spotlight" mode="targetbodycom" target="world" diffuse="1 1 1" specular="0.3 0.3 0.3" pos="0 0 10" cutoff="60"/>
+    <!-- Table for robot 0 -->
+    <body name="table_0" pos="-0.5000 -0.5000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 1 -->
+    <body name="table_1" pos="0.5000 -0.5000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 2 -->
+    <body name="table_2" pos="-0.5000 0.5000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 3 -->
+    <body name="table_3" pos="0.5000 0.5000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <frame pos="-0.5000 -0.5000 0.8000">
+      <attach model="ur5e" body="base" prefix="u0_"/>
+    </frame>
+    <frame pos="0.5000 -0.5000 0.8000">
+      <attach model="ur5e" body="base" prefix="u1_"/>
+    </frame>
+    <frame pos="-0.5000 0.5000 0.8000">
+      <attach model="ur5e" body="base" prefix="u2_"/>
+    </frame>
+    <frame pos="0.5000 0.5000 0.8000">
+      <attach model="ur5e" body="base" prefix="u3_"/>
+    </frame>
+    <!-- Box 0 -->
+    <body name="box_0" pos="-0.4163 -0.7850 1.3825">
+      <freejoint name="box_0_joint"/>
+      <geom type="box" size="0.052 0.052 0.052" material="box_mat" mass="0.37"/>
+    </body>
+    <!-- Box 1 -->
+    <body name="box_1" pos="-0.2647 -0.7478 1.4266">
+      <freejoint name="box_1_joint"/>
+      <geom type="box" size="0.037 0.037 0.037" material="box_mat" mass="0.30"/>
+    </body>
+    <!-- Sphere 2 -->
+    <body name="sphere_2" pos="0.2159 -0.6807 1.4950">
+      <freejoint name="sphere_2_joint"/>
+      <geom type="sphere" size="0.034" material="sphere_mat" mass="0.22"/>
+    </body>
+    <!-- Sphere 3 -->
+    <body name="sphere_3" pos="0.6857 -0.7961 1.5417">
+      <freejoint name="sphere_3_joint"/>
+      <geom type="sphere" size="0.037" material="sphere_mat" mass="0.13"/>
+    </body>
+    <!-- Box 4 -->
+    <body name="box_4" pos="-0.2257 0.4020 1.3278">
+      <freejoint name="box_4_joint"/>
+      <geom type="box" size="0.055 0.055 0.055" material="box_mat" mass="0.34"/>
+    </body>
+    <!-- Sphere 5 -->
+    <body name="sphere_5" pos="-0.3157 0.6378 1.4609">
+      <freejoint name="sphere_5_joint"/>
+      <geom type="sphere" size="0.038" material="sphere_mat" mass="0.21"/>
+    </body>
+    <!-- Sphere 6 -->
+    <body name="sphere_6" pos="0.6976 0.5711 1.5585">
+      <freejoint name="sphere_6_joint"/>
+      <geom type="sphere" size="0.044" material="sphere_mat" mass="0.11"/>
+    </body>
+    <!-- Box 7 -->
+    <body name="box_7" pos="0.3367 0.3736 1.3239">
+      <freejoint name="box_7_joint"/>
+      <geom type="box" size="0.033 0.033 0.033" material="box_mat" mass="0.21"/>
+    </body>
+  </worldbody>
+</mujoco>

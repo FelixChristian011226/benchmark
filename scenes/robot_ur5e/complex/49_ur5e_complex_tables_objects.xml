@@ -1,0 +1,862 @@
+<mujoco model="49 UR5E Robots Complex Scene">
+  
+  <option timestep="0.005" solver="CG" integrator="implicit"/>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1=".3 .5 .7" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="floor" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <texture name="box_tex" type="2d" builtin="flat" width="64" height="64" rgb1=".8 .4 .1"/>
+    <texture name="table_tex" type="2d" builtin="flat" width="128" height="128" rgb1=".3 .25 .2"/>
+    <material name="floor" texture="floor" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+    <material name="box_mat" texture="box_tex" specular="0.3" shininess="0.1"/>
+    <material name="sphere_mat" rgba=".2 .6 .8 1" specular="0.5" shininess="0.3"/>
+    <material name="table_mat" texture="table_tex" specular="0.2" shininess="0.05"/>
+    <model name="ur5e" file="ur5e.xml"/>
+  </asset>
+
+  <visual>
+    <map force="0.1" zfar="100"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <quality shadowsize="4096"/>
+    <global offwidth="1920" offheight="1080"/>
+  </visual>
+
+  <worldbody>
+    <geom name="floor" size="6.25 6.25 .05" type="plane" material="floor" condim="3"/>
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5" dir="0 0 -1" castshadow="false"/>
+    <light name="spotlight" mode="targetbodycom" target="world" diffuse="1 1 1" specular="0.3 0.3 0.3" pos="0 0 10" cutoff="60"/>
+    <!-- Table for robot 0 -->
+    <body name="table_0" pos="-3.0000 -3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 1 -->
+    <body name="table_1" pos="-2.0000 -3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 2 -->
+    <body name="table_2" pos="-1.0000 -3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 3 -->
+    <body name="table_3" pos="0.0000 -3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 4 -->
+    <body name="table_4" pos="1.0000 -3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 5 -->
+    <body name="table_5" pos="2.0000 -3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 6 -->
+    <body name="table_6" pos="3.0000 -3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 7 -->
+    <body name="table_7" pos="-3.0000 -2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 8 -->
+    <body name="table_8" pos="-2.0000 -2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 9 -->
+    <body name="table_9" pos="-1.0000 -2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 10 -->
+    <body name="table_10" pos="0.0000 -2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 11 -->
+    <body name="table_11" pos="1.0000 -2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 12 -->
+    <body name="table_12" pos="2.0000 -2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 13 -->
+    <body name="table_13" pos="3.0000 -2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 14 -->
+    <body name="table_14" pos="-3.0000 -1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 15 -->
+    <body name="table_15" pos="-2.0000 -1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 16 -->
+    <body name="table_16" pos="-1.0000 -1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 17 -->
+    <body name="table_17" pos="0.0000 -1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 18 -->
+    <body name="table_18" pos="1.0000 -1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 19 -->
+    <body name="table_19" pos="2.0000 -1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 20 -->
+    <body name="table_20" pos="3.0000 -1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 21 -->
+    <body name="table_21" pos="-3.0000 0.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 22 -->
+    <body name="table_22" pos="-2.0000 0.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 23 -->
+    <body name="table_23" pos="-1.0000 0.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 24 -->
+    <body name="table_24" pos="0.0000 0.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 25 -->
+    <body name="table_25" pos="1.0000 0.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 26 -->
+    <body name="table_26" pos="2.0000 0.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 27 -->
+    <body name="table_27" pos="3.0000 0.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 28 -->
+    <body name="table_28" pos="-3.0000 1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 29 -->
+    <body name="table_29" pos="-2.0000 1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 30 -->
+    <body name="table_30" pos="-1.0000 1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 31 -->
+    <body name="table_31" pos="0.0000 1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 32 -->
+    <body name="table_32" pos="1.0000 1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 33 -->
+    <body name="table_33" pos="2.0000 1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 34 -->
+    <body name="table_34" pos="3.0000 1.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 35 -->
+    <body name="table_35" pos="-3.0000 2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 36 -->
+    <body name="table_36" pos="-2.0000 2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 37 -->
+    <body name="table_37" pos="-1.0000 2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 38 -->
+    <body name="table_38" pos="0.0000 2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 39 -->
+    <body name="table_39" pos="1.0000 2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 40 -->
+    <body name="table_40" pos="2.0000 2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 41 -->
+    <body name="table_41" pos="3.0000 2.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 42 -->
+    <body name="table_42" pos="-3.0000 3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 43 -->
+    <body name="table_43" pos="-2.0000 3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 44 -->
+    <body name="table_44" pos="-1.0000 3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 45 -->
+    <body name="table_45" pos="0.0000 3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 46 -->
+    <body name="table_46" pos="1.0000 3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 47 -->
+    <body name="table_47" pos="2.0000 3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <!-- Table for robot 48 -->
+    <body name="table_48" pos="3.0000 3.0000 0">
+      <geom type="box" size="0.4 0.4 0.4" pos="0 0 0.4" material="table_mat" mass="50"/>
+    </body>
+    <frame pos="-3.0000 -3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u0_"/>
+    </frame>
+    <frame pos="-2.0000 -3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u1_"/>
+    </frame>
+    <frame pos="-1.0000 -3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u2_"/>
+    </frame>
+    <frame pos="0.0000 -3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u3_"/>
+    </frame>
+    <frame pos="1.0000 -3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u4_"/>
+    </frame>
+    <frame pos="2.0000 -3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u5_"/>
+    </frame>
+    <frame pos="3.0000 -3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u6_"/>
+    </frame>
+    <frame pos="-3.0000 -2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u7_"/>
+    </frame>
+    <frame pos="-2.0000 -2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u8_"/>
+    </frame>
+    <frame pos="-1.0000 -2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u9_"/>
+    </frame>
+    <frame pos="0.0000 -2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u10_"/>
+    </frame>
+    <frame pos="1.0000 -2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u11_"/>
+    </frame>
+    <frame pos="2.0000 -2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u12_"/>
+    </frame>
+    <frame pos="3.0000 -2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u13_"/>
+    </frame>
+    <frame pos="-3.0000 -1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u14_"/>
+    </frame>
+    <frame pos="-2.0000 -1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u15_"/>
+    </frame>
+    <frame pos="-1.0000 -1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u16_"/>
+    </frame>
+    <frame pos="0.0000 -1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u17_"/>
+    </frame>
+    <frame pos="1.0000 -1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u18_"/>
+    </frame>
+    <frame pos="2.0000 -1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u19_"/>
+    </frame>
+    <frame pos="3.0000 -1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u20_"/>
+    </frame>
+    <frame pos="-3.0000 0.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u21_"/>
+    </frame>
+    <frame pos="-2.0000 0.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u22_"/>
+    </frame>
+    <frame pos="-1.0000 0.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u23_"/>
+    </frame>
+    <frame pos="0.0000 0.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u24_"/>
+    </frame>
+    <frame pos="1.0000 0.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u25_"/>
+    </frame>
+    <frame pos="2.0000 0.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u26_"/>
+    </frame>
+    <frame pos="3.0000 0.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u27_"/>
+    </frame>
+    <frame pos="-3.0000 1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u28_"/>
+    </frame>
+    <frame pos="-2.0000 1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u29_"/>
+    </frame>
+    <frame pos="-1.0000 1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u30_"/>
+    </frame>
+    <frame pos="0.0000 1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u31_"/>
+    </frame>
+    <frame pos="1.0000 1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u32_"/>
+    </frame>
+    <frame pos="2.0000 1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u33_"/>
+    </frame>
+    <frame pos="3.0000 1.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u34_"/>
+    </frame>
+    <frame pos="-3.0000 2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u35_"/>
+    </frame>
+    <frame pos="-2.0000 2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u36_"/>
+    </frame>
+    <frame pos="-1.0000 2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u37_"/>
+    </frame>
+    <frame pos="0.0000 2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u38_"/>
+    </frame>
+    <frame pos="1.0000 2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u39_"/>
+    </frame>
+    <frame pos="2.0000 2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u40_"/>
+    </frame>
+    <frame pos="3.0000 2.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u41_"/>
+    </frame>
+    <frame pos="-3.0000 3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u42_"/>
+    </frame>
+    <frame pos="-2.0000 3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u43_"/>
+    </frame>
+    <frame pos="-1.0000 3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u44_"/>
+    </frame>
+    <frame pos="0.0000 3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u45_"/>
+    </frame>
+    <frame pos="1.0000 3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u46_"/>
+    </frame>
+    <frame pos="2.0000 3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u47_"/>
+    </frame>
+    <frame pos="3.0000 3.0000 0.8000">
+      <attach model="ur5e" body="base" prefix="u48_"/>
+    </frame>
+    <!-- Box 0 -->
+    <body name="box_0" pos="-2.9163 -3.2850 1.3825">
+      <freejoint name="box_0_joint"/>
+      <geom type="box" size="0.052 0.052 0.052" material="box_mat" mass="0.37"/>
+    </body>
+    <!-- Box 1 -->
+    <body name="box_1" pos="-2.7647 -3.2478 1.4266">
+      <freejoint name="box_1_joint"/>
+      <geom type="box" size="0.037 0.037 0.037" material="box_mat" mass="0.30"/>
+    </body>
+    <!-- Sphere 2 -->
+    <body name="sphere_2" pos="-2.2841 -3.1807 1.4950">
+      <freejoint name="sphere_2_joint"/>
+      <geom type="sphere" size="0.034" material="sphere_mat" mass="0.22"/>
+    </body>
+    <!-- Sphere 3 -->
+    <body name="sphere_3" pos="-1.8143 -3.2961 1.5417">
+      <freejoint name="sphere_3_joint"/>
+      <geom type="sphere" size="0.037" material="sphere_mat" mass="0.13"/>
+    </body>
+    <!-- Box 4 -->
+    <body name="box_4" pos="-0.7257 -3.0980 1.3278">
+      <freejoint name="box_4_joint"/>
+      <geom type="box" size="0.055 0.055 0.055" material="box_mat" mass="0.34"/>
+    </body>
+    <!-- Sphere 5 -->
+    <body name="sphere_5" pos="-0.8157 -2.8622 1.4609">
+      <freejoint name="sphere_5_joint"/>
+      <geom type="sphere" size="0.038" material="sphere_mat" mass="0.21"/>
+    </body>
+    <!-- Sphere 6 -->
+    <body name="sphere_6" pos="0.1976 -2.9289 1.5585">
+      <freejoint name="sphere_6_joint"/>
+      <geom type="sphere" size="0.044" material="sphere_mat" mass="0.11"/>
+    </body>
+    <!-- Box 7 -->
+    <body name="box_7" pos="-0.1633 -3.1264 1.3239">
+      <freejoint name="box_7_joint"/>
+      <geom type="box" size="0.033 0.033 0.033" material="box_mat" mass="0.21"/>
+    </body>
+    <!-- Box 8 -->
+    <body name="box_8" pos="1.0814 -3.0811 1.4111">
+      <freejoint name="box_8_joint"/>
+      <geom type="box" size="0.038 0.038 0.038" material="box_mat" mass="0.47"/>
+    </body>
+    <!-- Sphere 9 -->
+    <body name="sphere_9" pos="1.0888 -2.9345 1.3513">
+      <freejoint name="sphere_9_joint"/>
+      <geom type="sphere" size="0.033" material="sphere_mat" mass="0.18"/>
+    </body>
+    <!-- Sphere 10 -->
+    <body name="sphere_10" pos="2.2937 -2.9160 1.4671">
+      <freejoint name="sphere_10_joint"/>
+      <geom type="sphere" size="0.047" material="sphere_mat" mass="0.26"/>
+    </body>
+    <!-- Box 11 -->
+    <body name="box_11" pos="1.8374 -3.2807 1.3946">
+      <freejoint name="box_11_joint"/>
+      <geom type="box" size="0.036 0.036 0.036" material="box_mat" mass="0.48"/>
+    </body>
+    <!-- Box 12 -->
+    <body name="box_12" pos="3.2258 -3.1112 1.4966">
+      <freejoint name="box_12_joint"/>
+      <geom type="box" size="0.057 0.057 0.057" material="box_mat" mass="0.28"/>
+    </body>
+    <!-- Box 13 -->
+    <body name="box_13" pos="2.8589 -3.1520 1.4684">
+      <freejoint name="box_13_joint"/>
+      <geom type="box" size="0.048 0.048 0.048" material="box_mat" mass="0.46"/>
+    </body>
+    <!-- Sphere 14 -->
+    <body name="sphere_14" pos="-3.0604 -2.1684 1.5993">
+      <freejoint name="sphere_14_joint"/>
+      <geom type="sphere" size="0.032" material="sphere_mat" mass="0.11"/>
+    </body>
+    <!-- Box 15 -->
+    <body name="box_15" pos="-3.2342 -1.9235 1.5376">
+      <freejoint name="box_15_joint"/>
+      <geom type="box" size="0.032 0.032 0.032" material="box_mat" mass="0.25"/>
+    </body>
+    <!-- Sphere 16 -->
+    <body name="sphere_16" pos="-1.7023 -1.9825 1.5913">
+      <freejoint name="sphere_16_joint"/>
+      <geom type="sphere" size="0.030" material="sphere_mat" mass="0.24"/>
+    </body>
+    <!-- Sphere 17 -->
+    <body name="sphere_17" pos="-1.8910 -1.9778 1.3800">
+      <freejoint name="sphere_17_joint"/>
+      <geom type="sphere" size="0.032" material="sphere_mat" mass="0.19"/>
+    </body>
+    <!-- Box 18 -->
+    <body name="box_18" pos="-1.0278 -1.7277 1.5628">
+      <freejoint name="box_18_joint"/>
+      <geom type="box" size="0.045 0.045 0.045" material="box_mat" mass="0.17"/>
+    </body>
+    <!-- Sphere 19 -->
+    <body name="sphere_19" pos="-0.7524 -1.7777 1.3895">
+      <freejoint name="sphere_19_joint"/>
+      <geom type="sphere" size="0.042" material="sphere_mat" mass="0.13"/>
+    </body>
+    <!-- Sphere 20 -->
+    <body name="sphere_20" pos="0.1575 -1.9764 1.5336">
+      <freejoint name="sphere_20_joint"/>
+      <geom type="sphere" size="0.030" material="sphere_mat" mass="0.16"/>
+    </body>
+    <!-- Sphere 21 -->
+    <body name="sphere_21" pos="-0.2883 -1.7425 1.5636">
+      <freejoint name="sphere_21_joint"/>
+      <geom type="sphere" size="0.036" material="sphere_mat" mass="0.11"/>
+    </body>
+    <!-- Box 22 -->
+    <body name="box_22" pos="1.2268 -1.7318 1.3257">
+      <freejoint name="box_22_joint"/>
+      <geom type="box" size="0.032 0.032 0.032" material="box_mat" mass="0.40"/>
+    </body>
+    <!-- Sphere 23 -->
+    <body name="sphere_23" pos="1.1595 -2.2230 1.4426">
+      <freejoint name="sphere_23_joint"/>
+      <geom type="sphere" size="0.035" material="sphere_mat" mass="0.27"/>
+    </body>
+    <!-- Sphere 24 -->
+    <body name="sphere_24" pos="1.9539 -2.1729 1.4618">
+      <freejoint name="sphere_24_joint"/>
+      <geom type="sphere" size="0.034" material="sphere_mat" mass="0.16"/>
+    </body>
+    <!-- Sphere 25 -->
+    <body name="sphere_25" pos="2.2971 -1.9101 1.4314">
+      <freejoint name="sphere_25_joint"/>
+      <geom type="sphere" size="0.032" material="sphere_mat" mass="0.14"/>
+    </body>
+    <!-- Box 26 -->
+    <body name="box_26" pos="2.9029 -1.9470 1.3690">
+      <freejoint name="box_26_joint"/>
+      <geom type="box" size="0.032 0.032 0.032" material="box_mat" mass="0.35"/>
+    </body>
+    <!-- Box 27 -->
+    <body name="box_27" pos="2.8374 -1.7567 1.5579">
+      <freejoint name="box_27_joint"/>
+      <geom type="box" size="0.037 0.037 0.037" material="box_mat" mass="0.37"/>
+    </body>
+    <!-- Sphere 28 -->
+    <body name="sphere_28" pos="-3.1715 -1.2206 1.5807">
+      <freejoint name="sphere_28_joint"/>
+      <geom type="sphere" size="0.039" material="sphere_mat" mass="0.26"/>
+    </body>
+    <!-- Box 29 -->
+    <body name="box_29" pos="-2.8155 -1.1858 1.3291">
+      <freejoint name="box_29_joint"/>
+      <geom type="box" size="0.043 0.043 0.043" material="box_mat" mass="0.29"/>
+    </body>
+    <!-- Box 30 -->
+    <body name="box_30" pos="-1.8626 -0.8960 1.5952">
+      <freejoint name="box_30_joint"/>
+      <geom type="box" size="0.042 0.042 0.042" material="box_mat" mass="0.24"/>
+    </body>
+    <!-- Box 31 -->
+    <body name="box_31" pos="-1.7830 -1.1508 1.3571">
+      <freejoint name="box_31_joint"/>
+      <geom type="box" size="0.043 0.043 0.043" material="box_mat" mass="0.21"/>
+    </body>
+    <!-- Sphere 32 -->
+    <body name="sphere_32" pos="-1.1501 -0.7460 1.4329">
+      <freejoint name="sphere_32_joint"/>
+      <geom type="sphere" size="0.041" material="sphere_mat" mass="0.11"/>
+    </body>
+    <!-- Sphere 33 -->
+    <body name="sphere_33" pos="-0.7004 -0.7984 1.5907">
+      <freejoint name="sphere_33_joint"/>
+      <geom type="sphere" size="0.047" material="sphere_mat" mass="0.13"/>
+    </body>
+    <!-- Box 34 -->
+    <body name="box_34" pos="-0.0086 -1.1718 1.4203">
+      <freejoint name="box_34_joint"/>
+      <geom type="box" size="0.041 0.041 0.041" material="box_mat" mass="0.49"/>
+    </body>
+    <!-- Box 35 -->
+    <body name="box_35" pos="-0.1409 -0.8296 1.4365">
+      <freejoint name="box_35_joint"/>
+      <geom type="box" size="0.059 0.059 0.059" material="box_mat" mass="0.50"/>
+    </body>
+    <!-- Box 36 -->
+    <body name="box_36" pos="1.0335 -0.8690 1.3464">
+      <freejoint name="box_36_joint"/>
+      <geom type="box" size="0.059 0.059 0.059" material="box_mat" mass="0.33"/>
+    </body>
+    <!-- Sphere 37 -->
+    <body name="sphere_37" pos="1.0253 -0.8512 1.3171">
+      <freejoint name="sphere_37_joint"/>
+      <geom type="sphere" size="0.040" material="sphere_mat" mass="0.27"/>
+    </body>
+    <!-- Box 38 -->
+    <body name="box_38" pos="1.7945 -0.7235 1.3240">
+      <freejoint name="box_38_joint"/>
+      <geom type="box" size="0.048 0.048 0.048" material="box_mat" mass="0.37"/>
+    </body>
+    <!-- Box 39 -->
+    <body name="box_39" pos="1.8411 -1.2281 1.5671">
+      <freejoint name="box_39_joint"/>
+      <geom type="box" size="0.048 0.048 0.048" material="box_mat" mass="0.35"/>
+    </body>
+    <!-- Sphere 40 -->
+    <body name="sphere_40" pos="2.9515 -0.9498 1.4568">
+      <freejoint name="sphere_40_joint"/>
+      <geom type="sphere" size="0.034" material="sphere_mat" mass="0.24"/>
+    </body>
+    <!-- Box 41 -->
+    <body name="box_41" pos="2.8432 -1.0625 1.5015">
+      <freejoint name="box_41_joint"/>
+      <geom type="box" size="0.039 0.039 0.039" material="box_mat" mass="0.40"/>
+    </body>
+    <!-- Sphere 42 -->
+    <body name="sphere_42" pos="-3.2565 -0.0250 1.5995">
+      <freejoint name="sphere_42_joint"/>
+      <geom type="sphere" size="0.031" material="sphere_mat" mass="0.14"/>
+    </body>
+    <!-- Sphere 43 -->
+    <body name="sphere_43" pos="-3.1409 0.2600 1.5643">
+      <freejoint name="sphere_43_joint"/>
+      <geom type="sphere" size="0.037" material="sphere_mat" mass="0.13"/>
+    </body>
+    <!-- Sphere 44 -->
+    <body name="sphere_44" pos="-1.7998 0.1221 1.4835">
+      <freejoint name="sphere_44_joint"/>
+      <geom type="sphere" size="0.043" material="sphere_mat" mass="0.10"/>
+    </body>
+    <!-- Sphere 45 -->
+    <body name="sphere_45" pos="-1.8097 -0.1204 1.4990">
+      <freejoint name="sphere_45_joint"/>
+      <geom type="sphere" size="0.033" material="sphere_mat" mass="0.12"/>
+    </body>
+    <!-- Sphere 46 -->
+    <body name="sphere_46" pos="-1.2358 0.0319 1.3817">
+      <freejoint name="sphere_46_joint"/>
+      <geom type="sphere" size="0.044" material="sphere_mat" mass="0.14"/>
+    </body>
+    <!-- Sphere 47 -->
+    <body name="sphere_47" pos="-0.9195 -0.1416 1.4466">
+      <freejoint name="sphere_47_joint"/>
+      <geom type="sphere" size="0.047" material="sphere_mat" mass="0.12"/>
+    </body>
+    <!-- Sphere 48 -->
+    <body name="sphere_48" pos="-0.0459 -0.1340 1.3011">
+      <freejoint name="sphere_48_joint"/>
+      <geom type="sphere" size="0.043" material="sphere_mat" mass="0.15"/>
+    </body>
+    <!-- Box 49 -->
+    <body name="box_49" pos="0.1447 0.0310 1.4283">
+      <freejoint name="box_49_joint"/>
+      <geom type="box" size="0.032 0.032 0.032" material="box_mat" mass="0.45"/>
+    </body>
+    <!-- Sphere 50 -->
+    <body name="sphere_50" pos="1.2424 0.0274 1.5504">
+      <freejoint name="sphere_50_joint"/>
+      <geom type="sphere" size="0.033" material="sphere_mat" mass="0.13"/>
+    </body>
+    <!-- Sphere 51 -->
+    <body name="sphere_51" pos="0.8850 0.2394 1.5388">
+      <freejoint name="sphere_51_joint"/>
+      <geom type="sphere" size="0.048" material="sphere_mat" mass="0.14"/>
+    </body>
+    <!-- Sphere 52 -->
+    <body name="sphere_52" pos="1.8497 -0.2383 1.5340">
+      <freejoint name="sphere_52_joint"/>
+      <geom type="sphere" size="0.038" material="sphere_mat" mass="0.22"/>
+    </body>
+    <!-- Sphere 53 -->
+    <body name="sphere_53" pos="1.7927 0.2579 1.5594">
+      <freejoint name="sphere_53_joint"/>
+      <geom type="sphere" size="0.046" material="sphere_mat" mass="0.28"/>
+    </body>
+    <!-- Sphere 54 -->
+    <body name="sphere_54" pos="2.7149 0.1419 1.3997">
+      <freejoint name="sphere_54_joint"/>
+      <geom type="sphere" size="0.046" material="sphere_mat" mass="0.27"/>
+    </body>
+    <!-- Box 55 -->
+    <body name="box_55" pos="3.1864 -0.1399 1.5362">
+      <freejoint name="box_55_joint"/>
+      <geom type="box" size="0.056 0.056 0.056" material="box_mat" mass="0.44"/>
+    </body>
+    <!-- Box 56 -->
+    <body name="box_56" pos="-3.1665 1.1900 1.4381">
+      <freejoint name="box_56_joint"/>
+      <geom type="box" size="0.054 0.054 0.054" material="box_mat" mass="0.19"/>
+    </body>
+    <!-- Sphere 57 -->
+    <body name="sphere_57" pos="-3.2858 0.8159 1.3985">
+      <freejoint name="sphere_57_joint"/>
+      <geom type="sphere" size="0.049" material="sphere_mat" mass="0.16"/>
+    </body>
+    <!-- Sphere 58 -->
+    <body name="sphere_58" pos="-1.9151 0.9398 1.5943">
+      <freejoint name="sphere_58_joint"/>
+      <geom type="sphere" size="0.049" material="sphere_mat" mass="0.12"/>
+    </body>
+    <!-- Box 59 -->
+    <body name="box_59" pos="-1.7178 0.8071 1.5888">
+      <freejoint name="box_59_joint"/>
+      <geom type="box" size="0.033 0.033 0.033" material="box_mat" mass="0.27"/>
+    </body>
+    <!-- Sphere 60 -->
+    <body name="sphere_60" pos="-0.8629 0.8882 1.4819">
+      <freejoint name="sphere_60_joint"/>
+      <geom type="sphere" size="0.038" material="sphere_mat" mass="0.22"/>
+    </body>
+    <!-- Sphere 61 -->
+    <body name="sphere_61" pos="-1.1472 1.1253 1.3005">
+      <freejoint name="sphere_61_joint"/>
+      <geom type="sphere" size="0.041" material="sphere_mat" mass="0.24"/>
+    </body>
+    <!-- Box 62 -->
+    <body name="box_62" pos="0.1452 1.1024 1.4093">
+      <freejoint name="box_62_joint"/>
+      <geom type="box" size="0.050 0.050 0.050" material="box_mat" mass="0.23"/>
+    </body>
+    <!-- Box 63 -->
+    <body name="box_63" pos="-0.1117 1.2088 1.5159">
+      <freejoint name="box_63_joint"/>
+      <geom type="box" size="0.039 0.039 0.039" material="box_mat" mass="0.26"/>
+    </body>
+    <!-- Box 64 -->
+    <body name="box_64" pos="0.9414 0.8774 1.3382">
+      <freejoint name="box_64_joint"/>
+      <geom type="box" size="0.058 0.058 0.058" material="box_mat" mass="0.37"/>
+    </body>
+    <!-- Sphere 65 -->
+    <body name="sphere_65" pos="1.2417 1.0693 1.3903">
+      <freejoint name="sphere_65_joint"/>
+      <geom type="sphere" size="0.030" material="sphere_mat" mass="0.16"/>
+    </body>
+    <!-- Box 66 -->
+    <body name="box_66" pos="1.9579 1.0480 1.4964">
+      <freejoint name="box_66_joint"/>
+      <geom type="box" size="0.043 0.043 0.043" material="box_mat" mass="0.19"/>
+    </body>
+    <!-- Box 67 -->
+    <body name="box_67" pos="1.9839 1.2407 1.5388">
+      <freejoint name="box_67_joint"/>
+      <geom type="box" size="0.033 0.033 0.033" material="box_mat" mass="0.31"/>
+    </body>
+    <!-- Sphere 68 -->
+    <body name="sphere_68" pos="3.0798 0.9011 1.5455">
+      <freejoint name="sphere_68_joint"/>
+      <geom type="sphere" size="0.043" material="sphere_mat" mass="0.14"/>
+    </body>
+    <!-- Box 69 -->
+    <body name="box_69" pos="2.8195 0.7147 1.3735">
+      <freejoint name="box_69_joint"/>
+      <geom type="box" size="0.055 0.055 0.055" material="box_mat" mass="0.13"/>
+    </body>
+    <!-- Sphere 70 -->
+    <body name="sphere_70" pos="-3.0513 2.0779 1.3583">
+      <freejoint name="sphere_70_joint"/>
+      <geom type="sphere" size="0.040" material="sphere_mat" mass="0.15"/>
+    </body>
+    <!-- Sphere 71 -->
+    <body name="sphere_71" pos="-2.9064 1.7033 1.5253">
+      <freejoint name="sphere_71_joint"/>
+      <geom type="sphere" size="0.032" material="sphere_mat" mass="0.19"/>
+    </body>
+    <!-- Box 72 -->
+    <body name="box_72" pos="-2.1945 2.2748 1.4554">
+      <freejoint name="box_72_joint"/>
+      <geom type="box" size="0.037 0.037 0.037" material="box_mat" mass="0.44"/>
+    </body>
+    <!-- Sphere 73 -->
+    <body name="sphere_73" pos="-2.0261 2.1808 1.5003">
+      <freejoint name="sphere_73_joint"/>
+      <geom type="sphere" size="0.042" material="sphere_mat" mass="0.29"/>
+    </body>
+    <!-- Sphere 74 -->
+    <body name="sphere_74" pos="-0.7651 2.0676 1.5158">
+      <freejoint name="sphere_74_joint"/>
+      <geom type="sphere" size="0.047" material="sphere_mat" mass="0.21"/>
+    </body>
+    <!-- Box 75 -->
+    <body name="box_75" pos="-0.7617 2.1462 1.4424">
+      <freejoint name="box_75_joint"/>
+      <geom type="box" size="0.037 0.037 0.037" material="box_mat" mass="0.36"/>
+    </body>
+    <!-- Box 76 -->
+    <body name="box_76" pos="0.1595 2.0128 1.4880">
+      <freejoint name="box_76_joint"/>
+      <geom type="box" size="0.032 0.032 0.032" material="box_mat" mass="0.21"/>
+    </body>
+    <!-- Box 77 -->
+    <body name="box_77" pos="-0.1370 1.8918 1.4620">
+      <freejoint name="box_77_joint"/>
+      <geom type="box" size="0.037 0.037 0.037" material="box_mat" mass="0.38"/>
+    </body>
+    <!-- Sphere 78 -->
+    <body name="sphere_78" pos="1.1239 1.7385 1.4223">
+      <freejoint name="sphere_78_joint"/>
+      <geom type="sphere" size="0.038" material="sphere_mat" mass="0.14"/>
+    </body>
+    <!-- Sphere 79 -->
+    <body name="sphere_79" pos="0.9521 2.2429 1.4752">
+      <freejoint name="sphere_79_joint"/>
+      <geom type="sphere" size="0.047" material="sphere_mat" mass="0.25"/>
+    </body>
+    <!-- Sphere 80 -->
+    <body name="sphere_80" pos="1.9282 1.7035 1.4055">
+      <freejoint name="sphere_80_joint"/>
+      <geom type="sphere" size="0.047" material="sphere_mat" mass="0.29"/>
+    </body>
+    <!-- Sphere 81 -->
+    <body name="sphere_81" pos="1.9514 2.1485 1.4638">
+      <freejoint name="sphere_81_joint"/>
+      <geom type="sphere" size="0.034" material="sphere_mat" mass="0.14"/>
+    </body>
+    <!-- Sphere 82 -->
+    <body name="sphere_82" pos="2.9615 1.7174 1.4008">
+      <freejoint name="sphere_82_joint"/>
+      <geom type="sphere" size="0.038" material="sphere_mat" mass="0.13"/>
+    </body>
+    <!-- Box 83 -->
+    <body name="box_83" pos="2.9804 1.7766 1.4867">
+      <freejoint name="box_83_joint"/>
+      <geom type="box" size="0.042 0.042 0.042" material="box_mat" mass="0.33"/>
+    </body>
+    <!-- Box 84 -->
+    <body name="box_84" pos="-3.2837 3.0856 1.3407">
+      <freejoint name="box_84_joint"/>
+      <geom type="box" size="0.032 0.032 0.032" material="box_mat" mass="0.25"/>
+    </body>
+    <!-- Box 85 -->
+    <body name="box_85" pos="-3.1730 2.8961 1.5284">
+      <freejoint name="box_85_joint"/>
+      <geom type="box" size="0.053 0.053 0.053" material="box_mat" mass="0.43"/>
+    </body>
+    <!-- Sphere 86 -->
+    <body name="sphere_86" pos="-2.1486 2.7491 1.3058">
+      <freejoint name="sphere_86_joint"/>
+      <geom type="sphere" size="0.050" material="sphere_mat" mass="0.17"/>
+    </body>
+    <!-- Sphere 87 -->
+    <body name="sphere_87" pos="-1.9099 3.1687 1.4955">
+      <freejoint name="sphere_87_joint"/>
+      <geom type="sphere" size="0.049" material="sphere_mat" mass="0.14"/>
+    </body>
+    <!-- Sphere 88 -->
+    <body name="sphere_88" pos="-1.2878 2.7914 1.3379">
+      <freejoint name="sphere_88_joint"/>
+      <geom type="sphere" size="0.041" material="sphere_mat" mass="0.14"/>
+    </body>
+    <!-- Sphere 89 -->
+    <body name="sphere_89" pos="-0.8803 3.1601 1.3503">
+      <freejoint name="sphere_89_joint"/>
+      <geom type="sphere" size="0.045" material="sphere_mat" mass="0.12"/>
+    </body>
+    <!-- Box 90 -->
+    <body name="box_90" pos="0.1916 3.2788 1.3324">
+      <freejoint name="box_90_joint"/>
+      <geom type="box" size="0.039 0.039 0.039" material="box_mat" mass="0.37"/>
+    </body>
+    <!-- Box 91 -->
+    <body name="box_91" pos="0.2749 2.9380 1.5145">
+      <freejoint name="box_91_joint"/>
+      <geom type="box" size="0.051 0.051 0.051" material="box_mat" mass="0.35"/>
+    </body>
+    <!-- Sphere 92 -->
+    <body name="sphere_92" pos="0.7611 3.1635 1.5551">
+      <freejoint name="sphere_92_joint"/>
+      <geom type="sphere" size="0.032" material="sphere_mat" mass="0.30"/>
+    </body>
+    <!-- Box 93 -->
+    <body name="box_93" pos="1.1696 2.9083 1.4285">
+      <freejoint name="box_93_joint"/>
+      <geom type="box" size="0.045 0.045 0.045" material="box_mat" mass="0.24"/>
+    </body>
+    <!-- Sphere 94 -->
+    <body name="sphere_94" pos="2.2097 3.1934 1.3317">
+      <freejoint name="sphere_94_joint"/>
+      <geom type="sphere" size="0.043" material="sphere_mat" mass="0.27"/>
+    </body>
+    <!-- Sphere 95 -->
+    <body name="sphere_95" pos="2.1244 2.9613 1.5201">
+      <freejoint name="sphere_95_joint"/>
+      <geom type="sphere" size="0.035" material="sphere_mat" mass="0.26"/>
+    </body>
+    <!-- Sphere 96 -->
+    <body name="sphere_96" pos="3.0229 2.9901 1.4307">
+      <freejoint name="sphere_96_joint"/>
+      <geom type="sphere" size="0.035" material="sphere_mat" mass="0.27"/>
+    </body>
+    <!-- Box 97 -->
+    <body name="box_97" pos="3.1984 2.7520 1.5645">
+      <freejoint name="box_97_joint"/>
+      <geom type="box" size="0.044 0.044 0.044" material="box_mat" mass="0.34"/>
+    </body>
+  </worldbody>
+</mujoco>
