@@ -1,4 +1,10 @@
+# Cache files
+__pycache__/
+
 # Benchmark methods
 mujoco/
 mujoco_warp/
 cuda_mujoco/
+
+# Temporary files
+temp/

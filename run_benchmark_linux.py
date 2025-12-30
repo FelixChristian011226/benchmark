@@ -28,7 +28,7 @@ CONFIG = {
             "shell": False
         },
         "mjx": {
-            "enabled": False,
+            "enabled": True,
             "cmd_template": "mjx-testspeed --mjcf {full_path} --base_path . --batch_size 1 --nstep {steps}",
             "shell": False
         },

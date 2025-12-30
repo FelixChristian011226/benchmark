@@ -18,7 +18,7 @@ DEFAULT_ENGINE_OPTIONS = {
     },
     "cuda_mujoco": {
         "integrator": "implicit",
-        "jacobian": "dense",
+        "jacobian": None,
     },
     "mjx": {
         "integrator": "implicitfast",
@@ -26,7 +26,7 @@ DEFAULT_ENGINE_OPTIONS = {
     },
     "mujoco_warp": {
         "integrator": "implicitfast",
-        "jacobian": "dense",
+        "jacobian": None,
     }
 }
 
