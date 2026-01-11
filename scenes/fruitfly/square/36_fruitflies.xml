@@ -1,0 +1,126 @@
+<mujoco model="36 Fruitflies Square">
+  <option timestep="0.002" solver="CG" integrator="implicitfast"/>
+
+  <asset>
+    <model name="fruitfly" file="fruitfly.xml"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="9.0 9.0 .05" type="plane" material="grid" contype="1" conaffinity="1"/>
+
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5" dir="0 0 -1" castshadow="false"/>
+    <light name="spotlight" mode="targetbodycom" target="world" diffuse="1 1 1" specular="0.3 0.3 0.3" pos="-6 -6 4" cutoff="60"/>
+    
+    <!-- 36 fruitflies in 6x6 grid, spacing=1m -->
+      <frame pos="-2.500000 -2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r0_c0_"/>
+      </frame>
+      <frame pos="-1.500000 -2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r0_c1_"/>
+      </frame>
+      <frame pos="-0.500000 -2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r0_c2_"/>
+      </frame>
+      <frame pos="0.500000 -2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r0_c3_"/>
+      </frame>
+      <frame pos="1.500000 -2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r0_c4_"/>
+      </frame>
+      <frame pos="2.500000 -2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r0_c5_"/>
+      </frame>
+      <frame pos="-2.500000 -1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r1_c0_"/>
+      </frame>
+      <frame pos="-1.500000 -1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r1_c1_"/>
+      </frame>
+      <frame pos="-0.500000 -1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r1_c2_"/>
+      </frame>
+      <frame pos="0.500000 -1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r1_c3_"/>
+      </frame>
+      <frame pos="1.500000 -1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r1_c4_"/>
+      </frame>
+      <frame pos="2.500000 -1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r1_c5_"/>
+      </frame>
+      <frame pos="-2.500000 -0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r2_c0_"/>
+      </frame>
+      <frame pos="-1.500000 -0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r2_c1_"/>
+      </frame>
+      <frame pos="-0.500000 -0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r2_c2_"/>
+      </frame>
+      <frame pos="0.500000 -0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r2_c3_"/>
+      </frame>
+      <frame pos="1.500000 -0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r2_c4_"/>
+      </frame>
+      <frame pos="2.500000 -0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r2_c5_"/>
+      </frame>
+      <frame pos="-2.500000 0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r3_c0_"/>
+      </frame>
+      <frame pos="-1.500000 0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r3_c1_"/>
+      </frame>
+      <frame pos="-0.500000 0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r3_c2_"/>
+      </frame>
+      <frame pos="0.500000 0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r3_c3_"/>
+      </frame>
+      <frame pos="1.500000 0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r3_c4_"/>
+      </frame>
+      <frame pos="2.500000 0.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r3_c5_"/>
+      </frame>
+      <frame pos="-2.500000 1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r4_c0_"/>
+      </frame>
+      <frame pos="-1.500000 1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r4_c1_"/>
+      </frame>
+      <frame pos="-0.500000 1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r4_c2_"/>
+      </frame>
+      <frame pos="0.500000 1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r4_c3_"/>
+      </frame>
+      <frame pos="1.500000 1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r4_c4_"/>
+      </frame>
+      <frame pos="2.500000 1.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r4_c5_"/>
+      </frame>
+      <frame pos="-2.500000 2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r5_c0_"/>
+      </frame>
+      <frame pos="-1.500000 2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r5_c1_"/>
+      </frame>
+      <frame pos="-0.500000 2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r5_c2_"/>
+      </frame>
+      <frame pos="0.500000 2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r5_c3_"/>
+      </frame>
+      <frame pos="1.500000 2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r5_c4_"/>
+      </frame>
+      <frame pos="2.500000 2.500000 0.3">
+        <attach model="fruitfly" body="thorax" prefix="_r5_c5_"/>
+      </frame>
+  </worldbody>
+</mujoco>
