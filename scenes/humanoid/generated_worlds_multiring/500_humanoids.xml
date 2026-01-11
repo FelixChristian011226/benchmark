@@ -1,5 +1,5 @@
 <mujoco model="500 Humanoids MultiRing">
-  <option timestep="0.002" solver="CG" integrator="implicitfast" jacobian="dense"/>
+  <option timestep="0.002" solver="CG" integrator="implicitfast"/>
 
   <asset>
     <model name="humanoid" file="humanoid.xml"/>
