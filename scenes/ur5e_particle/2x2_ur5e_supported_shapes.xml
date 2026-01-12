@@ -1,4 +1,4 @@
-<mujoco model="2x2_ur5e_Shapes_NoCylinder">
+<mujoco model="2x2_ur5e_Supported_Shapes">
 
   <statistic extent="4" meansize=".05"/>
 
@@ -79,7 +79,7 @@
       </replicate>
     </replicate>
 
-    <!-- Particle group 3 (blue ellipsoids) - above u2 at (-1, 1) -->
+    <!-- Particle group 3 (blue capsules) - above u2 at (-1, 1) -->
     <replicate count="10" offset=".18 0 0">
       <replicate count="10" offset="0 .18 0">
         <replicate count="10" offset="0 0 .18">
@@ -87,7 +87,7 @@
             <joint type="slide" axis="1 0 0" group="3"/>
             <joint type="slide" axis="0 1 0" group="3"/>
             <joint type="slide" axis="0 0 1" group="3"/>
-            <geom type="ellipsoid" size="0.04 0.03 0.05" condim="1" priority="1" rgba="0.2 0.4 0.9 1"/>
+            <geom type="capsule" size="0.03 0.04" condim="1" priority="1" rgba="0.2 0.4 0.9 1"/>
           </body>
         </replicate>
       </replicate>
